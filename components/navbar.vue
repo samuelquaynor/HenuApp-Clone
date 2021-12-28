@@ -25,8 +25,11 @@
             <li><a class="nav-link" href="">contact</a></li>
           </ul>
         </div>
-        <div class="cart"><span> my cart:</span> 0 item(s)</div>
+        <!-- <div class="cart"><span> my cart:</span> 0 item(s)</div> -->
+        <NuxtLink class="nav-link" to="/Account">Login/Signup</NuxtLink>
       </div>
     </div>
   </nav>
 </template>
+<style lang="scss" scoped>
+</style>

@@ -1,17 +1,34 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'material-max',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      {
+        charset: 'utf-8',
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1',
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: '',
+      },
+      {
+        name: 'format-detection',
+        content: 'telephone=no',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -34,6 +51,30 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     'bootstrap-vue/nuxt',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          lazy: false,
+          apiKey: 'AIzaSyC0pEBh1eKZEyO0tmeUxz_fafDvgNDIZsw',
+          authDomain: 'material-max.firebaseapp.com',
+          projectId: 'material-max',
+          storageBucket: 'material-max.appspot.com',
+          messagingSenderId: '686956780142',
+          appId: '1:686956780142:web:a9dba4213a202ed269647f',
+          measurementId: 'G-JT3YGLJ7XZ',
+        },
+        services: {
+          auth: {
+            initialize: {
+              onAuthStateChangedAction: 'onAuthStateChanged',
+            },
+            ssr: true,
+          },
+          firestore: true
+        },
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

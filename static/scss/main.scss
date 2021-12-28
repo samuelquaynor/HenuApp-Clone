@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import "../../components/authentication/auth.scss";
+
+
+// Variables
+$primary-color: #4bafba;
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -34,7 +39,7 @@ a {
 
 .nav-header {
   display: flex;
-  background-color: #4bafba;
+  background-color: $primary-color;
   color: #fff;
   text-transform: uppercase;
   justify-content: center;
@@ -85,7 +90,7 @@ a {
     font-size: 13px;
     text-transform: lowercase;
     span {
-      color: #4bafba;
+      color: $primary-color;
       font-weight: 700;
       font-size: 14px;
       text-transform: uppercase;
@@ -100,7 +105,7 @@ a {
   }
   .main-category {
     color: #fff;
-    background-color: #4bafba;
+    background-color: $primary-color;
     padding: 10px 20px;
     font-size: 14px;
     font-weight: 700;
@@ -208,7 +213,7 @@ a {
       .money,
       .money_like {
         font-size: 14px;
-        color: #4bafba;
+        color: $primary-color;
       }
     }
   }
@@ -232,7 +237,7 @@ a {
     margin-bottom: 0;
   }
   .advantages_item svg {
-    fill: #4bafba;
+    fill: $primary-color;
   }
   .advantages_text {
     margin-left: 42px;
@@ -338,7 +343,7 @@ a {
     letter-spacing: -0.05em;
     padding: 5px 16px;
     font-family: Roboto;
-    background: #4bafba;
+    background: $primary-color;
     border-color: #4bafba;
   }
   .btn_alt {
