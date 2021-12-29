@@ -59,7 +59,7 @@
             <input type="hidden" name="return_url" value="/account" />
         </div>
       </div>
-            <button @click="logout">signout</button>
+            <button @click="logout, $router.push('/')">signout</button>
 
       <div
         id="account_section__reset"

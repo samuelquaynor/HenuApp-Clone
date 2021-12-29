@@ -29,7 +29,7 @@
               value=""
               name="customer[first_name]"
               id="first_name"
-              v-model="formData.firstname"
+              v-model="firstName"
             />
             <p class="alert-inline" style="display: none"></p>
           </div>
@@ -43,7 +43,7 @@
               value=""
               name="customer[last_name]"
               id="last_name"
-              v-model="formData.lastname"
+              v-model="lastName"
             />
             <p class="alert-inline" style="display: none"></p>
           </div>
@@ -86,7 +86,9 @@
 
         <div class="form-group">
           <div class="col-sm-offset-4 col-sm-4">
-            <button class="btn btn-primary" @click="postdata">Register</button>
+            <button class="btn btn-primary" @click="createUser">
+              Register
+            </button>
             <a class="account_register__close" href="#">Cancel</a>
           </div>
         </div>
@@ -96,8 +98,8 @@
   </section>
 </template>
 <script>
-import Vue from 'vue'
-import { mapState, mapGetters } from 'vuex'
+import Vue from 'vue';
+import { mapState, mapGetters } from 'vuex';
 
 export default Vue.extend({
   computed: {
@@ -107,45 +109,69 @@ export default Vue.extend({
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
     }),
+    firstName: {
+      get() {
+        return this.$store.state.firstName;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_FIRSTNAME', value);
+      },
+    },
+    lastName: {
+      get() {
+        return this.$store.state.lastName;
+      },
+      set(value) {
+        this.$store.commit('UPDATE_LASTNAME', value);
+      },
+    },
   },
   data: () => ({
     formData: {
       email: '',
       password: '',
-      firstname: '',
-      lastname: '',
     },
   }),
   methods: {
     async createUser() {
       try {
-        await this.$fire.auth.createUserWithEmailAndPassword(
-          this.formData.email,
-          this.formData.password
-        )
+        await this.$fire.auth
+          .createUserWithEmailAndPassword(
+            this.formData.email,
+            this.formData.password
+          )
+          .then(this.postdata());
       } catch (e) {
-        alert(e)
+        alert(e);
       }
     },
 
-    async postdata() {
+    async postdata() { 
       try {
+        let firstName = this.$store.state.firstName;
+        let lastName = this.$store.state.lastName;
         this.$fire.firestore
           .collection('Users')
-          .doc("data/userid/ " + Math.random()*20)
-          .set({ firstname: '' , lastname: ''})
+          .doc(this.$store.state.authUser.uid)
+          .set({
+            firstname: firstName,
+            lastname: lastName,
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
 
     async logout() {
       try {
-        await this.$fire.auth.signOut()
+        await this.$fire.auth.signOut();
       } catch (e) {
-        alert(e)
+        alert(e);
       }
     },
   },
-})
+});
 </script>
