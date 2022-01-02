@@ -21,45 +21,45 @@
         </div>
 
         <div class="account_section account_section__login">
+          <input type="hidden" name="form_type" value="customer_login" /><input
+            type="hidden"
+            name="utf8"
+            value="✓"
+          />
+          <h4>Already registered?</h4>
+
+          <div class="form-group">
+            <label for="customer_email">Email address</label>
             <input
-              type="hidden"
-              name="form_type"
-              value="customer_login"
-            /><input type="hidden" name="utf8" value="✓" />
-            <h4>Already registered?</h4>
+              type="email"
+              value=""
+              name="customer[email]"
+              id="customer_email"
+              v-model="formData.email"
+            />
+            <p class="alert-inline" style="display: none"></p>
+          </div>
 
-            <div class="form-group">
-              <label for="customer_email">Email address</label>
-              <input
-                type="email"
-                value=""
-                name="customer[email]"
-                id="customer_email"
-                v-model="formData.email"
-              />
-              <p class="alert-inline" style="display: none"></p>
-            </div>
+          <div class="form-group">
+            <label for="customer_password">Password</label>
+            <input
+              type="password"
+              value=""
+              name="customer[password]"
+              id="customer_password"
+              v-model="formData.password"
+            />
+            <p class="alert-inline" style="display: none"></p>
+          </div>
 
-            <div class="form-group">
-              <label for="customer_password">Password</label>
-              <input
-                type="password"
-                value=""
-                name="customer[password]"
-                id="customer_password"
-                v-model="formData.password"
-              />
-              <p class="alert-inline" style="display: none"></p>
-            </div>
-
-            <div class="form-group">
-              <button class="btn" @click="signInUser">Sign in</button>
-              <a id="account_reset__link" href="#">Forgot your password?</a>
-            </div>
-            <input type="hidden" name="return_url" value="/account" />
+          <div class="form-group">
+            <button class="btn" @click="signInUser">Sign in</button>
+            <a id="account_reset__link" href="#">Forgot your password?</a>
+          </div>
+          <input type="hidden" name="return_url" value="/account" />
         </div>
       </div>
-            <button @click="logout, $router.push('/')">signout</button>
+      <button @click="logout">signout</button>
 
       <div
         id="account_section__reset"
@@ -101,8 +101,8 @@
   </div>
 </template>
 <script>
-import Vue from 'vue'
-import { mapState, mapGetters } from 'vuex'
+import Vue from 'vue';
+import { mapState, mapGetters } from 'vuex';
 export default Vue.extend({
   computed: {
     ...mapState({
@@ -119,7 +119,7 @@ export default Vue.extend({
         password: '',
         firsname: '',
       },
-    }
+    };
   },
   methods: {
     async signInUser() {
@@ -127,18 +127,18 @@ export default Vue.extend({
         await this.$fire.auth.signInWithEmailAndPassword(
           this.formData.email,
           this.formData.password
-        )
+        );
       } catch (e) {
-        alert(e)
+        alert(e);
       }
     },
     async logout() {
       try {
-        await this.$fire.auth.signOut()
+        await this.$fire.auth.signOut();
       } catch (e) {
-        alert(e)
+        alert(e);
       }
     },
   },
-})
+});
 </script>

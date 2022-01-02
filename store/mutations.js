@@ -1,7 +1,6 @@
 import { vuexfireMutations } from 'vuexfire';
 
 import initialState from './state';
-import * as firebase from '@nuxtjs/firebase';
 
 export default {
   ...vuexfireMutations,
@@ -22,15 +21,5 @@ export default {
 
   UPDATE_LASTNAME: (state, lastName) => {
     state.lastName = lastName;
-  },
-
-  createUserData: (state) => {
-    this.$fire.firestore
-      .collection('Users')
-      .doc('data/' + state.authUser.uid)
-      .set({ firstname: state.FirstName, lastname: state.LastName })
-      .catch((error) => {
-        console.log(error.message);
-      });
   },
 };

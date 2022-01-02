@@ -23,17 +23,6 @@ export default {
     }
   },
 
-  bindCountDocument: firestoreAction(async function ({ bindFirestoreRef }) {
-    this.$fire.firestore
-      .collection('Users')
-      .doc('data/' + state.authUser.uid)
-      .set({ firstname: state.FirstName, lastname: state.LastName })
-      .catch((error) => {
-        console.log(error.message);
-      });
-    console.log('passed');
-  }),
-
   async onAuthStateChanged({ commit }, { authUser }) {
     if (!authUser) {
       commit('RESET_STORE');

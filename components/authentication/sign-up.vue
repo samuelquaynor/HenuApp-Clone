@@ -164,14 +164,6 @@ export default Vue.extend({
         console.log(e);
       }
     },
-
-    async logout() {
-      try {
-        await this.$fire.auth.signOut();
-      } catch (e) {
-        alert(e);
-      }
-    },
   },
 });
 </script>
